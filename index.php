@@ -16,6 +16,12 @@
                 <input type="text" name="usuario" placeholder="Nombre de usuario...">
                 <input type="password" name="password" placeholder="Contraseña...">
                 <button>ENTRAR</button>
+                <?php
+                    if (isset($_GET['error'])) {
+                        $error = $_GET['error'];
+                        echo "<p style='color: red'>Usuario o contraseña incorrectos </p>";
+                    }
+                ?>
             </form>
         </div>
     </div>
