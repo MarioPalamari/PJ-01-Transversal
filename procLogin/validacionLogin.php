@@ -17,7 +17,7 @@ try{
     // Si el usuario existe, valido la contraseña
     if ($row && password_verify($password, $row['password_camarero'])) {
         $_SESSION['nombre_camarero'] = $row['nombre_camarero'];
-        header('Location: ');  //poner la direccion a la que el camarero se dirigirá cuando se logee
+        header('Location: ../paginaPrincipal.php');  
         exit();
     } else {
         header('Location: ../index.php?error=1');
