@@ -13,7 +13,7 @@ CREATE TABLE tbl_roles (
 CREATE TABLE tbl_users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    pwd VARCHAR(255) NOT NULL,
     role_id INT,
     FOREIGN KEY (role_id) REFERENCES tbl_roles(role_id) ON DELETE SET NULL
 );
@@ -161,3 +161,6 @@ INSERT INTO tbl_tables (room_id, current_room_id, table_number, capacity, status
 (9, NULL, 6, 4, 'free'),
 (9, NULL, 7, 4, 'free'),
 (9, NULL, 8, 4, 'free');
+
+
+
