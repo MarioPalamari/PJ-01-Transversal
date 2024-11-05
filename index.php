@@ -17,7 +17,6 @@
                 <input type="password" name="password" placeholder="Contraseña...">
                 <button type="submit">ENTRAR</button>
                 <?php
-                // Mostrar mensaje de error si la autenticación falla
                 if (isset($_GET['error']) && $_GET['error'] == 1) {
                     echo "<p style='color: red'>Usuario o contraseña incorrectos</p>";
                 }
