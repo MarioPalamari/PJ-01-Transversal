@@ -13,8 +13,8 @@
         </div>
         <div>
             <form action="./procLogin/validacionLogin.php" method="POST">
-                <input type="text" name="usuario" placeholder="Nombre de usuario...">
-                <input type="password" name="password" placeholder="Contraseña...">
+                <input type="text" name="usuario" placeholder="Nombre de usuario..." onblur="validaNombre()">
+                <input type="password" name="password" placeholder="Contraseña..." onblur="validaContraseña()">
                 <button>ENTRAR</button>
                 <?php
                     if (isset($_GET['error'])) {
@@ -25,5 +25,8 @@
             </form>
         </div>
     </div>
+
+
+<script src="./validaciones/validaciones.js"></script>
 </body>
 </html>
