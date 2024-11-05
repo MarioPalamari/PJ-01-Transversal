@@ -1,3 +1,4 @@
+-- SQLBook: Code
 CREATE DATABASE db_mokadictos;
 
 USE db_mokadictos;
