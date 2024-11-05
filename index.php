@@ -12,7 +12,7 @@
             <img src="" alt="">  <!-- logo de la pagina -->
         </div>
         <div>
-            <form action="" method="POST">
+            <form action="./procLogin/validacionLogin.php" method="POST">
                 <input type="text" name="usuario" placeholder="Nombre de usuario...">
                 <input type="password" name="password" placeholder="Contraseña...">
                 <button>ENTRAR</button>
