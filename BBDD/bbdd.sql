@@ -69,14 +69,6 @@ CREATE TABLE tbl_group_tables (
 -- Insertar roles en la tabla de roles
 INSERT INTO tbl_roles (role_name) VALUES ('Camarero'), ('Administrador');
 
--- Insertar usuarios en la tabla de usuarios
--- INSERT INTO tbl_users (username, pwd, role_id) 
--- VALUES 
---     ('Kilian', 'password1_hashed', 1),
---     ('Óscar', 'password2_hashed', 1),
---     ('Adrian', 'password3_hashed', 1),
---     ('Mario', 'password4_hashed', 1);
-
 -- Insertar salas en la tabla de salas
 INSERT INTO tbl_rooms (name, capacity, description) 
 VALUES 
