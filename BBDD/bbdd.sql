@@ -13,7 +13,7 @@ CREATE TABLE tbl_roles (
 CREATE TABLE tbl_users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    pwd VARCHAR(255) NOT NULL,
     role_id INT,
     FOREIGN KEY (role_id) REFERENCES tbl_roles(role_id) ON DELETE SET NULL
 );
@@ -70,12 +70,12 @@ CREATE TABLE tbl_group_tables (
 INSERT INTO tbl_roles (role_name) VALUES ('Camarero'), ('Administrador');
 
 -- Insertar usuarios en la tabla de usuarios
-INSERT INTO tbl_users (username, password, role_id) 
-VALUES 
-    ('Kilian Ruiz', 'password1_hashed', 1),
-    ('Óscar Lopez', 'password2_hashed', 1),
-    ('Adrian Vazquez', 'password3_hashed', 1),
-    ('Mario Palamari', 'password4_hashed', 1);
+-- INSERT INTO tbl_users (username, pwd, role_id) 
+-- VALUES 
+--     ('Kilian', 'password1_hashed', 1),
+--     ('Óscar', 'password2_hashed', 1),
+--     ('Adrian', 'password3_hashed', 1),
+--     ('Mario', 'password4_hashed', 1);
 
 -- Insertar salas en la tabla de salas
 INSERT INTO tbl_rooms (name, capacity, description) 
@@ -169,3 +169,6 @@ INSERT INTO tbl_tables (room_id, current_room_id, table_number, capacity, status
 (9, NULL, 6, 4, 'free'),
 (9, NULL, 7, 4, 'free'),
 (9, NULL, 8, 4, 'free');
+
+
+
