@@ -9,7 +9,7 @@
 <body>
     <div>
         <div>
-            <img src="" alt="">  <!-- logo de la pagina -->
+            <img src="./img/logo.webp" alt="">  <!-- logo de la pagina -->
         </div>
         <div>
             <form action="./procLogin/validacionLogin.php" method="POST">
