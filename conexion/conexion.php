@@ -2,7 +2,7 @@
 $dbServer = "localhost";
 $dbUser = "root";
 $dbPsswd = "";
-$dbName = "bd_restaurante";
+$dbName = "db_mokadictos";
 
 
 try{
