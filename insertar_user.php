@@ -3,7 +3,7 @@
 include_once('./conexion/conexion.php');
 
 // Datos del usuario a insertar
-$username = 'Carlos'; 
+$username = 'OLopez'; 
 $password = 'qweQWE123'; 
 $role_id = 1;
 

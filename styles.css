@@ -1,0 +1,277 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d9a875;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background-color: #8A5021;
+    width: 88%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 7%;
+    padding-bottom: 7%;
+}
+.container2 {
+    text-align: center;
+    background-color: #8A5021;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 88%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 5.5%;
+    padding-bottom: 5.5%;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    font-family: 'Arial Black', sans-serif;
+    margin-bottom: 30px;
+}
+
+.room-sections {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.room-category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #a67c52;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 33.33%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.room-category img {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: transparent;
+    color: #3b2c24;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-button {
+    margin-top: 30px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #b89a7e;
+    color: #3b2c24;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #9e8a6e;
+}
+
+.nums {
+    height: 50px;
+    background-color: transparent;
+}
+
+/* Ajustes para mostrar la cuadrícula con 3 mesas en la primera fila y 2 en la segunda */
+
+.table {
+    background-color: #a67c52; 
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 90%; 
+}
+
+.table img {
+    width: 20%; 
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.table p {
+    font-weight: bold;
+    color: #3b2c24; 
+    margin-top: 2%;
+}
+
+.logout {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #b89a7e;
+    color: #3b2c24;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logout:hover {
+    background-color: #9e8a6e;
+}
+/* Ajustes para mostrar la cuadrícula con mesas en posiciones específicas */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Tres columnas */
+    grid-template-rows: auto auto; /* Dos filas */
+    gap: 20px; /* Espacio entre mesas */
+    justify-items: center;
+    margin: 0 auto;
+    grid-template-areas: 
+        "mesa1 . mesa2 . mesa3"
+        ". mesa4 . mesa5 ."; /* Coloca mesa4 y mesa5 en las posiciones deseadas */
+}
+
+.table {
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Asigna cada mesa a su área de la cuadrícula */
+#mesa1 {
+    grid-area: mesa1;
+}
+
+#mesa2 {
+    grid-area: mesa2;
+}
+
+#mesa3 {
+    grid-area: mesa3;
+}
+
+#mesa4 {
+    grid-area: mesa4;
+}
+
+#mesa5 {
+    grid-area: mesa5;
+}
+
+/* Estilos de imagen y texto de las mesas */
+.table img {
+    width: 25%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.table p {
+    font-weight: bold;
+    color: #3b2c24;
+    margin-top: 5px;
+}
+
+@media (max-width: 700px) {
+    /* Ajuste de contenedor para que todo se vea en una sola columna */
+    .container {
+        width: 100%;
+        padding: 5%;
+    }
+
+    /* Coloca las secciones de salas en una columna */
+    .room-sections {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Cada categoría de sala ocupará toda la anchura */
+    .room-category {
+        width: 90%;
+    }
+@media (max-width: 700px) {
+    /* Contenedor principal */
+    .container2 {
+        width: 80%;
+         padding: 3%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+    
+    /* Imagen del encabezado */
+    .header img.imgTerraza1 {
+        width: 40%;
+        max-width: 280px;
+        margin-bottom: 15px;
+   }
+    
+    h1 {
+        font-size: 24px;  
+        margin-top: 20px;
+        text-align: center;
+    }
+    
+    /* Ajuste de las mesas en columnas */
+    .grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; /* Reduce el espacio entre mesas */
+        width: 100%;
+        }
+    
+    /* Mesas */
+    .table {
+        width: 40%;
+        max-width: 300px;
+        padding: 10px;
+        margin: 5px 0; 
+        box-sizing: border-box;
+        }
+    
+    /* Ajuste de texto en cada mesa */
+    .table p {
+        font-size: 18px;
+        margin: 5px 0;
+    }
+    
+    /* Botones de cerrar sesión y volver */
+    .logout-button, .logout {
+        font-size: 14px;
+        padding: 10px 15px;
+        width: 100%;
+        max-width: 280px;
+        margin: 8px 0;
+    }
+}
+    
+    
+}
+

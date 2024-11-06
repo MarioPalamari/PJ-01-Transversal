@@ -72,7 +72,32 @@ p {
 
 /* Logo Style */
 img {
-    width: 200px;
-    margin-bottom: 20px;
+    width: 250px; /* Ancho de la imagen */
+    margin-right: 30px; /* Espaciado entre el logo y el formulario */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra de la imagen */
+    transition: transform 0.3s; /* Transición al pasar el ratón */
+    
+}
+img:hover {
+    transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
 }
 
+@media (max-width: 700px) {
+    div.container {
+        flex-direction: row; /* Cambia la dirección a fila */
+        align-items: flex-start;
+    }
+
+    img {
+        width: 120px; 
+        margin-right: 20px; /* Espaciado entre la imagen y el formulario */
+        margin-bottom: 0;
+    }
+
+    form {
+        width: 100%; 
+        max-width: 300px; 
+        padding: 20px; 
+    }
+}
