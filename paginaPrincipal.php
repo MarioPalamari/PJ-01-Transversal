@@ -25,7 +25,7 @@ if (!isset($_SESSION['usuario'])) {
         <div class="room-sections">
             <!-- Sección de Terrazas -->
             <div class="room-category">
-                <img src="./img/terraza.webp" alt="Terrazas">
+                <img src="./img/terraza.webp" class="pinchable" data-nombre="Terrazas" alt="Terrazas">
                 <div class="buttons">
                     <form action="./salones/terraza1.php">
                     <button><img class="nums" src="./img/nums/1.webp" alt=""></button>
@@ -73,6 +73,7 @@ if (!isset($_SESSION['usuario'])) {
         </div>
         <button class="logout-button" onclick="logout()">Cerrar Sesión</button>
     </div>
+
 
 <script src="./validaciones/funciones.js"></script>
 </body>

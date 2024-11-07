@@ -196,6 +196,8 @@ button {
     margin-top: 5px;
 }
 
+
+
 @media (max-width: 700px) {
     /* Ajuste de contenedor para que todo se vea en una sola columna */
     .container {
@@ -213,7 +215,6 @@ button {
     .room-category {
         width: 90%;
     }
-@media (max-width: 700px) {
     /* Contenedor principal */
     .container2 {
         width: 80%;
@@ -271,7 +272,3 @@ button {
         margin: 8px 0;
     }
 }
-    
-    
-}
-

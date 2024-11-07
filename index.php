@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulario de Login</title>
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
@@ -12,11 +13,13 @@
             <img src="./img/logo.webp" alt="Logo de la página"><br>
         </div>
         <div>
-            <form action="./procLogin/validacionLogin.php" method="POST">
-                <input type="text" name="usuario" placeholder="Nombre de usuario...">
+            <form action="./procLogin/validacionLogin.php" method="POST" onsubmit="return validarFormulario()">
+                <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario..." onblur="validaNombre()">
                 <div id="error-nombre" class="mensaje-error" style="color: red;"></div>
-                <input type="password" name="password" placeholder="Contraseña...">
+                
+                <input type="password" name="password" id="password" placeholder="Contraseña..." onblur="validaContraseña()">
                 <div id="error_contraseña" class="mensaje-error" style="color: red;"></div>
+                
                 <button type="submit">ENTRAR</button>
                 <?php
                 if (isset($_GET['error']) && $_GET['error'] == 1) {
@@ -29,3 +32,5 @@
     <script src="./validaciones/validaciones.js"></script>
 </body>
 </html>
+
+
