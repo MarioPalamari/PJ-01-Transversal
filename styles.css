@@ -14,20 +14,33 @@ body {
     width: 88%;
     padding-left: 5%;
     padding-right: 5%;
-    padding-top: 7%;
+    padding-top: 3%;
     padding-bottom: 7%;
+    border-radius: 12px;
+    position: relative;
 }
 .container2 {
     text-align: center;
-    background-color: #8A5021;
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-position: center; 
+    background-image: url('./img/fondo.jpg'); /* Asegúrate de reemplazar 'ruta/a/tu/imagen/fondo.webp' con la ruta correcta de tu imagen */
+    background-size: 100%; /* Ajusta el tamaño de la imagen al 50% del contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
     width: 88%;
     padding-left: 5%;
     padding-right: 5%;
-    padding-top: 5.5%;
-    padding-bottom: 5.5%;
+    padding-top: 2%;
+    padding-bottom: 7%;
+    border-radius: 12px;
+    position: relative;
+}
+/* clase para el logo arriba a la derecha */
+.superpuesta {
+    position: absolute; /* Permite que la imagen se superponga */
+    top: 0; /* Ajusta la distancia desde la parte superior */
+    right: 0; /* Ajusta la distancia desde la derecha */
+    width: 150px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
+    z-index: 10; /* Asegura que la imagen esté por encima del contenedor */
 }
 
 h1 {
@@ -66,7 +79,7 @@ h1 {
 
 .buttons {
     display: flex;
-    gap: 10px;
+    gap: 5px;
     margin-top: 10px;
 }
 
@@ -115,42 +128,17 @@ h1 {
     cursor: pointer; 
 }
 
-/* Ajustes para mostrar la cuadrícula con 3 mesas en la primera fila y 2 en la segunda */
 
 
-/* Estilo para la ventana */
-.ventana {
-    display: none; 
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+.mesa-info {
+    background-color: #8A5021;
+    padding: 10px;
+    border-radius: 8px; /* Bordes redondeados */
+    color: white;
+    width: fit-content; /* Ajusta el tamaño del recuadro al contenido */
+    margin: 10px auto; /* Centrado horizontal */
+    text-align: center; /* Centrado del contenido dentro del recuadro */
 }
-
-.ventana-content {
-    background-color: white;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 60%;
-    max-width: 500px;
-    position: relative;
-    text-align: center;
-}
-
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    color: black;
-}
-
 
 .table {
     background-color: #a67c52; 
@@ -200,6 +188,24 @@ h1 {
         "mesa1 . mesa2 . mesa3"
         ". mesa4 . mesa5 ."; /* Coloca mesa4 y mesa5 en las posiciones deseadas */
 }
+.grid3 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Tres columnas */
+    grid-template-rows: auto auto; /* Dos filas */
+    gap: 20px; /* Espacio entre mesas */
+    justify-items: center;
+    margin: 0 auto;
+    grid-template-areas: 
+        "mesa16 . mesa17 . mesa18"
+        ". mesa19 . mesa20 ."; /* Coloca mesa4 y mesa5 en las posiciones deseadas */
+}
+.grid2{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Tres columnas */
+    gap: 40px;
+    justify-items: center;
+    margin: 0 auto;
+}
 
 .table {
     padding: 10px;
@@ -228,6 +234,25 @@ h1 {
 #mesa5 {
     grid-area: mesa5;
 }
+#mesa16 {
+    grid-area: mesa16;
+}
+
+#mesa17 {
+    grid-area: mesa17;
+}
+
+#mesa18 {
+    grid-area: mesa18;
+}
+
+#mesa19 {
+    grid-area: mesa19;
+}
+
+#mesa20 {
+    grid-area: mesa20;
+}
 
 /* Estilos de imagen y texto de las mesas */
 .table img {
@@ -249,18 +274,23 @@ h1 {
     /* Ajuste de contenedor para que todo se vea en una sola columna */
     .container {
         width: 100%;
-        padding: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 40%;
+        padding-bottom: 7%;
     }
 
     /* Coloca las secciones de salas en una columna */
     .room-sections {
         flex-direction: column;
         gap: 20px;
+        height: 750px;
     }
 
     /* Cada categoría de sala ocupará toda la anchura */
     .room-category {
         width: 90%;
+        height: 50%;
     }
     /* Contenedor principal */
     .container2 {
@@ -281,7 +311,7 @@ h1 {
    }
     
     h1 {
-        font-size: 24px;  
+        font-size: 45px;  
         margin-top: 20px;
         text-align: center;
     }
@@ -291,14 +321,14 @@ h1 {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 15px; /* Reduce el espacio entre mesas */
-        width: 100%;
+        gap: 5px; /* Reduce el espacio entre mesas */
+        width: 80%;
         }
-    
+
     /* Mesas */
     .table {
-        width: 40%;
-        max-width: 300px;
+        width: 60%;
+        max-width: 500px;
         padding: 10px;
         margin: 5px 0; 
         box-sizing: border-box;
@@ -306,7 +336,7 @@ h1 {
     
     /* Ajuste de texto en cada mesa */
     .table p {
-        font-size: 18px;
+        font-size: 14px;
         margin: 5px 0;
     }
     
