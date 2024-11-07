@@ -140,6 +140,8 @@ h1 {
     text-align: center; /* Centrado del contenido dentro del recuadro */
 }
 
+
+
 .table {
     background-color: #a67c52; 
     padding: 10px;
@@ -294,13 +296,13 @@ h1 {
     }
     /* Contenedor principal */
     .container2 {
-        width: 80%;
-         padding: 3%;
+        width: 90%;
+        padding: 3%;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 20px;
+        border-radius: 12px;
     }
     
     /* Imagen del encabezado */
@@ -311,20 +313,34 @@ h1 {
    }
     
     h1 {
-        font-size: 45px;  
-        margin-top: 20px;
+        font-size: 45px;
         text-align: center;
     }
     
     /* Ajuste de las mesas en columnas */
-    .grid {
+    .grid, .grid3 {
         display: flex;
-        flex-direction: column;
         align-items: center;
         gap: 5px; /* Reduce el espacio entre mesas */
-        width: 80%;
-        }
-
+        width: 100%;
+    }
+    .grid2 {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* Cinco columnas */
+        grid-template-rows: repeat(2, auto); /* Dos filas */
+        gap: 20px; /* Espacio entre mesas */
+        justify-items: center;
+        margin: 0 auto;
+        grid-template-areas: 
+            "mesa1 mesa2 mesa3 mesa4 mesa5" /* Primera fila */
+            "mesa6 mesa7 mesa8 mesa9 mesa10"; /* Segunda fila */
+    }
+    .table img {
+        width: 50%; 
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
     /* Mesas */
     .table {
         width: 60%;
