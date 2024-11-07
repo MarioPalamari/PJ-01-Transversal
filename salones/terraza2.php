@@ -151,6 +151,6 @@ $result = $conexion->query($sql);
     </div>
 
     <script src="../validaciones/funcionesSalones.js"></script>
-
+    <script src="../validaciones/funciones.js"></script>
 </body>
 </html>
