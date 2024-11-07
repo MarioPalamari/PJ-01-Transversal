@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_P
     // Movimiento de mesas
     elseif ($action === 'move' && isset($_POST['newRoomId'])) {
         $newRoomId = $_POST['newRoomId'];
-        $sqlMoveTable = "UPDATE tbl_tables SET room_id = ? WHERE table_id = ?";
+        $sqlMoveTable = "UPDATE tbl_tables SET current_room_id = ? WHERE table_id = ?";
         $stmtMoveTable = $conexion->prepare($sqlMoveTable);
         $stmtMoveTable->bind_param("ii", $newRoomId, $tableId);
         $stmtMoveTable->execute();
@@ -99,8 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_P
     exit();
 }
 
-// Consultar el estado actual de cada mesa en la terraza 2
-$sql = "SELECT table_id, status FROM tbl_tables WHERE room_id = 2";
+$sql = "SELECT table_id, status FROM tbl_tables WHERE table_id BETWEEN 6 AND 15";
 $result = $conexion->query($sql);
 ?>
 
@@ -109,7 +108,7 @@ $result = $conexion->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terraza II</title>
+    <title>Terraza II</title> 
     <link rel="stylesheet" href="../styles.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://fonts.googleapis.com/css2?family=Sancreek&display=swap" rel="stylesheet">
@@ -117,9 +116,9 @@ $result = $conexion->query($sql);
 <body>
     <div class="container2">
         <div class="header">
-            <img class="terraza2" src="../img/terraza2.png" alt="" class="imgTerraza2">
+            <h1>T e r r a z a    II</h1> <!-- Título actualizado -->
         </div>
-        <div class="grid">
+        <div class="grid2">
             <?php
             // Generar HTML para cada mesa
             while ($row = $result->fetch_assoc()) {
@@ -151,43 +150,7 @@ $result = $conexion->query($sql);
         </form>
     </div>
 
-    <script>
-function openTableOptions(tableId, status, romanTableId) {
-    const actions = [
-        { label: status === 'free' ? 'Ocupar Mesa' : 'Desocupar Mesa', value: status === 'free' ? 'occupy' : 'free' },
-        { label: 'Seleccionar Mesa para Agrupar', value: 'selectForGroup' },
-        { label: 'Mover Mesa', value: 'move' }
-    ];
+    <script src="../validaciones/funcionesSalones.js"></script>
 
-    let optionsHtml = actions.map(action => `
-        <button onclick="submitAction(${tableId}, '${action.value}')" 
-                style="padding: 10px 20px; margin: 5px; background-color: #8A5021; color: white; 
-                border: none; border-radius: 10px; cursor: pointer; width: 250px; text-align: center;">
-            ${action.label}
-        </button>
-    `).join('');
-
-    Swal.fire({
-        title: `<h2 style="color: white; font-family: 'Sancreek', cursive;">Mesa ${romanTableId}</h2>`,
-        html: `<div style="display: flex; flex-direction: column; align-items: center;">${optionsHtml}</div>`,
-        showConfirmButton: false,
-        showCancelButton: true,
-        cancelButtonText: '<span>Cancelar</span>',
-        customClass: {
-            popup: 'custom-swal-popup',
-            title: 'custom-swal-title',
-            content: 'custom-swal-content'
-        },
-        background: 'rgba(210, 180, 140, 0.8)',  // Fondo marrón claro menos transparente
-        backdrop: 'rgba(0, 0, 0, 0.5)'
-    });
-}
-
-        function submitAction(tableId, action, newRoomId = null) {
-            document.getElementById(`action${tableId}`).value = action;
-            if (newRoomId) document.getElementById(`newRoomId${tableId}`).value = newRoomId;
-            document.getElementById(`formMesa${tableId}`).submit();
-        }
-    </script>
 </body>
 </html>

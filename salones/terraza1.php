@@ -95,32 +95,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_P
         $stmtMoveTable->execute();
     }
 
-    // Proceso de agrupación de mesas
-elseif ($action === 'group' && isset($_POST['selectedTables'])) {
-    $selectedTables = $_POST['selectedTables'];
-
-    // Crear un nuevo grupo
-    $sqlInsertGroup = "INSERT INTO tbl_table_groups (user_id) VALUES (?)";
-    $stmtInsertGroup = $conexion->prepare($sqlInsertGroup);
-    $stmtInsertGroup->bind_param("i", $userId);
-    $stmtInsertGroup->execute();
-    $groupId = $stmtInsertGroup->insert_id;
-
-    // Agregar cada mesa al grupo creado
-    $sqlInsertGroupTable = "INSERT INTO tbl_group_tables (group_id, table_id) VALUES (?, ?)";
-    $stmtInsertGroupTable = $conexion->prepare($sqlInsertGroupTable);
-    foreach ($selectedTables as $tableId) {
-        $stmtInsertGroupTable->bind_param("ii", $groupId, $tableId);
-        $stmtInsertGroupTable->execute();
-
-        // Actualizar el estado de la mesa a "occupied" (opcional)
-        $sqlUpdateTable = "UPDATE tbl_tables SET status = 'occupied' WHERE table_id = ?";
-        $stmtUpdateTable = $conexion->prepare($sqlUpdateTable);
-        $stmtUpdateTable->bind_param("i", $tableId);
-        $stmtUpdateTable->execute();
-    }
-}
-
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
@@ -177,55 +151,7 @@ $result = $conexion->query($sql);
         </form>
     </div>
 
-    <script>
-function openTableOptions(tableId, status, romanTableId) {
-    const actions = [
-        { label: status === 'free' ? 'Ocupar Mesa' : 'Desocupar Mesa', value: status === 'free' ? 'occupy' : 'free' },
-        { label: 'Agrupar Mesas', value: 'group' },
-        { label: 'Mover Mesa', value: 'move' }
-    ];
+    <script src="../validaciones/funcionesSalones.js"></script>
 
-    let optionsHtml = actions.map(action => `<button onclick="submitAction(${tableId}, '${action.value}')" style="padding: 10px 20px; margin: 5px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">${action.label}</button>`).join('');
-
-    if (status === 'free') { // Solo agrupa si la mesa está libre
-        Swal.fire({
-            title: `<h2 style="color: #2C3E50; font-family: 'Sancreek', cursive;">Seleccionar mesas para agrupar</h2>`,
-            html: `
-                <form id="groupTablesForm" action="group_tables_action.php" method="POST">
-                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 400px;">
-                        ${generateTableCheckboxes()}
-                    </div>
-                </form>
-            `,
-            showCancelButton: true,
-            confirmButtonText: 'Agrupar',
-            cancelButtonText: 'Cancelar',
-            preConfirm: () => {
-                const selectedTables = document.querySelectorAll('input[name="table_ids[]"]:checked');
-                if (selectedTables.length === 0) {
-                    Swal.showValidationMessage('Seleccione al menos una mesa');
-                    return false;
-                }
-                return true;
-            }
-        }).then(result => {
-            if (result.isConfirmed) {
-                document.getElementById("groupTablesForm").submit(); // Enviar formulario
-            }
-        });
-    }
-}
-
-// Generar los checkboxes para las mesas disponibles (en este ejemplo, haré una suposición de las mesas libres en lugar de cargar dinámicamente)
-function generateTableCheckboxes() {
-    const mesasLibres = [1, 2, 3, 4, 5]; // Aquí coloca manualmente las mesas libres o usa PHP para generarlas dinámicamente si prefieres.
-    return mesasLibres.map(mesa => `
-        <label style="margin: 5px;">
-            <input type="checkbox" name="table_ids[]" value="${mesa}">
-            Mesa ${mesa}
-        </label>
-    `).join('');
-}
-</script>
 </body>
 </html>
