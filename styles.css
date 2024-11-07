@@ -93,17 +93,64 @@ button {
     font-size: 16px;
     cursor: pointer;
 }
-
+h1 {
+    font-family: 'Sancreek';
+}
 .logout-button:hover {
     background-color: #9e8a6e;
 }
 
+
+/* Estilos básicos para las imágenes de números */
 .nums {
+    width: 50px;
     height: 50px;
-    background-color: transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto de hover */
+.nums:hover {
+    transform: scale(1.2); /* Agranda la imagen */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Agrega una sombra */
+    cursor: pointer; 
 }
 
 /* Ajustes para mostrar la cuadrícula con 3 mesas en la primera fila y 2 en la segunda */
+
+
+/* Estilo para la ventana */
+.ventana {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+}
+
+.ventana-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 60%;
+    max-width: 500px;
+    position: relative;
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: black;
+}
+
 
 .table {
     background-color: #a67c52; 

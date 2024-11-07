@@ -25,7 +25,7 @@ if (!isset($_SESSION['usuario'])) {
         <div class="room-sections">
             <!-- Sección de Terrazas -->
             <div class="room-category">
-                <img src="./img/terraza.webp" class="pinchable" data-nombre="Terrazas" alt="Terrazas">
+            <img src="./img/terraza.webp" alt="Terrazas" onclick="ventana1()">
                 <div class="buttons">
                     <form action="./salones/terraza1.php">
                     <button><img class="nums" src="./img/nums/1.webp" alt=""></button>
@@ -41,7 +41,7 @@ if (!isset($_SESSION['usuario'])) {
 
             <!-- Sección de Salones Principales -->
             <div class="room-category">
-                <img class="salon" src="./img/salon.webp" alt="Salones Principales">
+                <img class="salon" src="./img/salon.webp" alt="Salones Principales" onclick="ventana2()">
                 <div class="buttons">
                     <form action="./salones/salon1.php">
                     <button><img class="nums" src="./img/nums/1.webp" alt=""></button>
@@ -54,7 +54,7 @@ if (!isset($_SESSION['usuario'])) {
 
             <!-- Sección de Salas Privadas -->
             <div class="room-category">
-                <img src="./img/vip.webp" alt="Salas Privadas">
+                <img src="./img/vip.webp" alt="Salas Privadas" onclick="ventana3()">
                 <div class="buttons">
                     <form action="./salones/vip1.php">
                     <button><img class="nums" src="./img/nums/1.webp"></button>
@@ -76,6 +76,30 @@ if (!isset($_SESSION['usuario'])) {
 
 
 <script src="./validaciones/funciones.js"></script>
+<!-- TERRAZA -->
+<div id="ventana-terraza" class="ventana" style="display: none;">
+    <div class="ventana-content">
+        <span class="close-button" onclick="cerrarventana1()">&times;</span>
+        <h2>Terraza</h2>
+        <p></p>
+    </div>
+</div>
+<!-- SALON PRINCIPAL -->
+<div id="ventana-salon" class="ventana" style="display: none;">
+    <div class="ventana-content">
+        <span class="close-button" onclick="cerrarventana2()">&times;</span>
+        <h2>Salon Principal</h2>
+        <p></p>
+    </div>
+</div>
+<!-- VIP -->
+<div id="ventana-vip" class="ventana" style="display: none;">
+    <div class="ventana-content">
+        <span class="close-button" onclick="cerrarventana3()">&times;</span>
+        <h2>VIP</h2>
+        <p></p>
+    </div>
+</div>
 </body>
 </html>
 

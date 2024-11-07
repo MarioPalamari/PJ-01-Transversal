@@ -6,20 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Login</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <!-- link de google fonts para el titulo -->
+    <link href="https://fonts.googleapis.com/css2?family=Sancreek&display=swap" rel="stylesheet">
+    <!-- link de google fonts para la letra del formulario -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="container">
         <div>
-            <img src="./img/logo.webp" alt="Logo de la página"><br>
-        </div>
-        <div>
             <form action="./procLogin/validacionLogin.php" method="POST" onsubmit="return validarFormulario()">
-                <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario..." onblur="validaNombre()">
-                <div id="error-nombre" class="mensaje-error" style="color: red;"></div>
-                
-                <input type="password" name="password" id="password" placeholder="Contraseña..." onblur="validaContraseña()">
-                <div id="error_contraseña" class="mensaje-error" style="color: red;"></div>
-                
+                <!-- Titulo (primera linea para el sombreado, segunda linea es el titulo en si) -->
+                <div><p class="sombraindex">Iniciar SesionDD</p></div>
+                <div><p class="tituloindex">Iniciar Sesion</p></div>
+                <!-- Contenedor flex para los inputs -->
+                <div class="input-container">
+                    <!-- Usuario -->
+                    <div class="input-left">
+                        <div><p class="pformularioindex">Nombre de Usuario:</p></div>
+                        <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario..." onblur="validaNombre()">
+                        <div id="error-nombre" class="mensaje-error" style="color: red;"></div>
+                    </div>
+                    <!-- Contraseña -->
+                    <div class="input-right">
+                        <div><p class="pformularioindex">Contraseña:</p></div>
+                        <input type="password" name="password" id="password" placeholder="Contraseña..." onblur="validaContraseña()">
+                        <div id="error_contraseña" class="mensaje-error" style="color: red;"></div>
+                    </div>
+                </div>
+                <!-- Boton para entrar -->
                 <button type="submit">ENTRAR</button>
                 <?php
                 if (isset($_GET['error']) && $_GET['error'] == 1) {
@@ -27,6 +42,9 @@
                 }
                 ?>
             </form>
+            <div>
+                <img src="./img/logo.webp" alt="Logo de la página"><br>
+            </div>
         </div>
     </div>
     <script src="./validaciones/validaciones.js"></script>

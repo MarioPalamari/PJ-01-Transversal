@@ -1,3 +1,8 @@
+/* link al google fonts de sancreek (utilizado en el titulo) */
+@import url('https://fonts.googleapis.com/css2?family=Sancreek&display=swap');
+/* link al google fonts de inter (utilizado en el formulario) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 body {
     font-family: Arial, sans-serif;
     background-color: #d9a875; /* Background color similar to coffee brown */
@@ -21,6 +26,28 @@ form {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     width: 100%;
+    margin-top: 50px;
+}
+
+.input-container {
+    display: flex; /* Activar el modelo flex */
+    justify-content: space-between; /* Espacia los elementos en los extremos */
+    margin: 20px 0; /* Espacio vertical entre el contenedor y otros elementos */
+}
+
+.input-left,
+.input-right {
+    width: 48%; /* Cada input ocupará casi la mitad del contenedor */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* Asegura que el input ocupe todo el ancho de su contenedor */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Bordes del input */
+    font-size: 16px;
 }
 
 h1 {
@@ -49,12 +76,12 @@ input::placeholder {
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
+    display: inline-block; /* Cambia el display a inline-block */
+    padding: 10px 20px; /* Añade un poco de padding horizontal */
+    margin: 10px auto; /* Usa auto para centrar */
     border-radius: 5px;
     border: none;
-    background-color: #b89a7e;
+    background-color: #FBFFEB;
     color: #3b2c24; /* Darker shade for button text */
     font-weight: bold;
     font-size: 16px;
@@ -62,7 +89,7 @@ button {
 }
 
 button:hover {
-    background-color: #9e8a6e;
+    background-color: #cacfb5;
 }
 
 p {
@@ -70,35 +97,138 @@ p {
     font-weight: bold;
     margin-top: 10px;
 }
+.sombraindex {
+    font-family: 'Sancreek', cursive;
+    font-size: 40px;
+    background: black; /* Color de fondo */
+    color: black; /* Color del texto */
+    filter: blur(10px);
+    position: absolute; /* Posiciona el elemento de forma absoluta */
+    z-index: 1;
+    margin-top: 1px;
+}
+
+.tituloindex {
+    font-family: 'Sancreek', cursive;
+    font-size: 40px;
+    color: white; /* Color del texto */
+    margin-top: -1px;
+    position: relative; /* Posiciona el título relativo para que se superponga */
+    z-index: 2;
+}
+
+.pformularioindex {
+    font-size: 20px;
+    color: white;
+    font-family: 'Inter', cursive;
+    font-weight: normal;
+}
 
 /* Logo Style */
 img {
     width: 250px; /* Ancho de la imagen */
-    margin-right: 30px; /* Espaciado entre el logo y el formulario */
     border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra de la imagen */
     transition: transform 0.3s; /* Transición al pasar el ratón */
-    
-}
-img:hover {
-    transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
 }
 
 @media (max-width: 700px) {
-    div.container {
-        flex-direction: row; /* Cambia la dirección a fila */
-        align-items: flex-start;
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #d9a875; /* Background color similar to coffee brown */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
     }
 
-    img {
-        width: 120px; 
-        margin-right: 20px; /* Espaciado entre la imagen y el formulario */
-        margin-bottom: 0;
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     form {
-        width: 100%; 
-        max-width: 300px; 
-        padding: 20px; 
+        background-color: #a67c52; /* Darker brown background for form */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    h1 {
+        font-size: 32px;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        margin-bottom: 20px;
+        font-family: 'Arial Black', sans-serif;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: none;
+        background-color: #d4b79e; /* Lighter brown for input fields */
+        font-size: 16px;
+        color: #5c3d2e; /* Darker brown for text color */
+    }
+
+    input::placeholder {
+        color: #7e5c4a; /* Placeholder color */
+    }
+
+    button {
+        display: inline-block; /* Cambia el display a inline-block */
+        padding: 10px 20px; /* Añade un poco de padding horizontal */
+        margin: 10px auto; /* Usa auto para centrar */
+        border-radius: 5px;
+        border: none;
+        background-color: #FBFFEB;
+        color: #3b2c24; /* Darker shade for button text */
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #cacfb5;
+    }
+
+    p {
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .sombraindex {
+        font-family: 'Sancreek', cursive;
+        font-size: 40px;
+        background: black; /* Color de fondo */
+        color: black; /* Color del texto */
+        filter: blur(10px);
+        position: absolute; /* Posiciona el elemento de forma absoluta */
+        z-index: 1;
+        margin-top: 1px;
+    }
+
+    .tituloindex {
+        font-family: 'Sancreek', cursive;
+        font-size: 40px;
+        color: white; /* Color del texto */
+        margin-top: -1px;
+        position: relative; /* Posiciona el título relativo para que se superponga */
+        z-index: 2;
+    }
+
+    .pformularioindex {
+        font-size: 20px;
+        color: white;
+        font-family: 'Inter', cursive;
+        font-weight: normal;
     }
 }

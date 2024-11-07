@@ -31,47 +31,60 @@ function logout1() {
     });
 }
 
-const mesaStatus = {
-    1: false, // false: libre, true: ocupada
-    2: false,
-    3: false,
-    4: false,
-    5: false
-};
 
-// Función para manejar el clic en cada mesa
-function handleClick(mesaId) {
-    if (mesaStatus[mesaId]) {
-        // Si la mesa está ocupada, muestra opción de liberar
-        Swal.fire({
-            title: `Mesa ${mesaId} está ocupada`,
-            text: "¿Quieres liberarla?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Liberar",
-            cancelButtonText: "Cancelar"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Cambiar estado a libre y actualizar la imagen a sombrilla normal
-                mesaStatus[mesaId] = false;
-                document.getElementById(`imgMesa${mesaId}`).src = "../img/sombrilla.webp";
-            }
-        });
-    } else {
-        // Si la mesa está libre, muestra opción de ocupar
-        Swal.fire({
-            title: `Mesa ${mesaId} está libre`,
-            text: "¿Quieres ocuparla?",
-            icon: "info",
-            showCancelButton: true,
-            confirmButtonText: "Ocupar",
-            cancelButtonText: "Cancelar"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Cambiar estado a ocupada y actualizar la imagen a sombrilla roja
-                mesaStatus[mesaId] = true;
-                document.getElementById(`imgMesa${mesaId}`).src = "../img/sombrillaRoja.webp";
-            }
-        });
+// TERRAZA
+// Función para abrir la ventana emergente
+function ventana1() {
+    document.getElementById("ventana-terraza").style.display = "block";
+}
+
+// Función para cerrar la ventana emergente
+function cerrarventana1() {
+    document.getElementById("ventana-terraza").style.display = "none";
+}
+
+// Cerrar la ventana si se hace clic fuera de él
+window.onclick = function(event) {
+    ventana = document.getElementById("ventana-terraza");
+    if (event.target === ventana) {
+        cerrarventana1();
+    }
+}
+
+// SALONES
+// Función para abrir la ventana emergente
+function ventana2() {
+    document.getElementById("ventana-salon").style.display = "block";
+}
+
+// Función para cerrar la ventana emergente
+function cerrarventana2() {
+    document.getElementById("ventana-salon").style.display = "none";
+}
+
+// Cerrar la ventana si se hace clic fuera de él
+window.onclick = function(event) {
+    ventana = document.getElementById("ventana-salon");
+    if (event.target === ventana) {
+        cerrarventana2();
+    }
+}
+
+// VIP
+// Función para abrir la ventana emergente
+function ventana3() {
+    document.getElementById("ventana-vip").style.display = "block";
+}
+
+// Función para cerrar la ventana emergente
+function cerrarventana3() {
+    document.getElementById("ventana-vip").style.display = "none";
+}
+
+// Cerrar la ventana si se hace clic fuera de él
+window.onclick = function(event) {
+    ventana = document.getElementById("ventana-vip");
+    if (event.target === ventana) {
+        cerrarventana3();
     }
 }
