@@ -115,6 +115,7 @@ $result = $conexion->query($sql);
     <link href="https://fonts.googleapis.com/css2?family=Sancreek&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div><img src="./../img/logo.webp" alt="Logo de la página" class="superpuesta"><br></div>
     <div class="container2">
         <div class="header">
             <h1>T e r r a z a    III</h1> <!-- Título actualizado -->

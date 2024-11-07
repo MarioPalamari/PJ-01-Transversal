@@ -116,7 +116,7 @@ $result = $conexion->query($sql);
 <body>
     <div class="container2">
         <div class="header">
-            <h1>S A L Ó N    I</h1> <!-- Título actualizado -->
+            <h1>S A L Ó N    I</h1> 
         </div>
         <div class="grid2">
             <?php
@@ -125,7 +125,7 @@ $result = $conexion->query($sql);
                 $tableId = $row['table_id'];
                 $status = $row['status'];
                 $romanTableId = romanNumerals($tableId); // Convertimos a números romanos
-                $imgSrc = ($status === 'occupied') ? '../img/sombrillaRoja.webp' : '../img/sombrilla.webp';
+                $imgSrc = ($status === 'occupied') ? '../img/salonRoja.webp' : '../img/salonVerde.webp';
 
                 echo "
                 <div class='table' id='mesa$tableId' onclick='openTableOptions($tableId, \"$status\", \"$romanTableId\")'>

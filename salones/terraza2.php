@@ -120,15 +120,18 @@ $result = $conexion->query($sql);
         </div>
         <div class="grid2">
             <?php
+            // ID de la terraza actual
+            $roomId = 2;  // Asumimos que terraza2 tiene el ID 2 en la base de datos
+
             // Generar HTML para cada mesa
             while ($row = $result->fetch_assoc()) {
                 $tableId = $row['table_id'];
                 $status = $row['status'];
                 $romanTableId = romanNumerals($tableId); // Convertimos a números romanos
-                $imgSrc = ($status === 'occupied') ? '../img/sombrillaRoja.webp' : '../img/sombrilla.webp';
+                $imgSrc = ($status === 'occupied') ? '../img/salonRoja.webp' : '../img/sombrilla.webp';
 
                 echo "
-                <div class='table' id='mesa$tableId' onclick='openTableOptions($tableId, \"$status\", \"$romanTableId\")'>
+                <div class='table' id='mesa$tableId' onclick='openTableOptions($tableId, \"$status\", \"$romanTableId\", $roomId)'>
                     <img id='imgMesa$tableId' src='$imgSrc' alt='Mesa $tableId'>
                     <p>Mesa $romanTableId</p>
                 </div>
@@ -146,11 +149,11 @@ $result = $conexion->query($sql);
 
         <button class="logout-button" onclick="logout()">Cerrar Sesión</button>
         <form action="../paginaPrincipal.php">
-            <button class="logout">Volver</button>
+            <button class="logout" onclick="goBack()">Volver</button>
         </form>
     </div>
 
+    <!-- Aquí incluimos el archivo JavaScript generalizado -->
     <script src="../validaciones/funcionesSalones.js"></script>
-    <script src="../validaciones/funciones.js"></script>
 </body>
 </html>
