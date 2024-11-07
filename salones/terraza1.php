@@ -181,70 +181,50 @@ $result = $conexion->query($sql);
 function openTableOptions(tableId, status, romanTableId) {
     const actions = [
         { label: status === 'free' ? 'Ocupar Mesa' : 'Desocupar Mesa', value: status === 'free' ? 'occupy' : 'free' },
-        { label: 'Seleccionar Mesa para Agrupar', value: 'selectForGroup' },
+        { label: 'Agrupar Mesas', value: 'group' },
         { label: 'Mover Mesa', value: 'move' }
     ];
 
-    let optionsHtml = actions.map(action => `
-        <button onclick="submitAction(${tableId}, '${action.value}')" 
-                style="padding: 10px 20px; margin: 5px; background-color: #8A5021; color: white; 
-                border: none; border-radius: 10px; cursor: pointer; width: 250px; text-align: center;">
-            ${action.label}
-        </button>
+    let optionsHtml = actions.map(action => `<button onclick="submitAction(${tableId}, '${action.value}')" style="padding: 10px 20px; margin: 5px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">${action.label}</button>`).join('');
+
+    if (status === 'free') { // Solo agrupa si la mesa está libre
+        Swal.fire({
+            title: `<h2 style="color: #2C3E50; font-family: 'Sancreek', cursive;">Seleccionar mesas para agrupar</h2>`,
+            html: `
+                <form id="groupTablesForm" action="group_tables_action.php" method="POST">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 400px;">
+                        ${generateTableCheckboxes()}
+                    </div>
+                </form>
+            `,
+            showCancelButton: true,
+            confirmButtonText: 'Agrupar',
+            cancelButtonText: 'Cancelar',
+            preConfirm: () => {
+                const selectedTables = document.querySelectorAll('input[name="table_ids[]"]:checked');
+                if (selectedTables.length === 0) {
+                    Swal.showValidationMessage('Seleccione al menos una mesa');
+                    return false;
+                }
+                return true;
+            }
+        }).then(result => {
+            if (result.isConfirmed) {
+                document.getElementById("groupTablesForm").submit(); // Enviar formulario
+            }
+        });
+    }
+}
+
+// Generar los checkboxes para las mesas disponibles (en este ejemplo, haré una suposición de las mesas libres en lugar de cargar dinámicamente)
+function generateTableCheckboxes() {
+    const mesasLibres = [1, 2, 3, 4, 5]; // Aquí coloca manualmente las mesas libres o usa PHP para generarlas dinámicamente si prefieres.
+    return mesasLibres.map(mesa => `
+        <label style="margin: 5px;">
+            <input type="checkbox" name="table_ids[]" value="${mesa}">
+            Mesa ${mesa}
+        </label>
     `).join('');
-
-    Swal.fire({
-        title: `<h2 style="color: white; font-family: 'Sancreek', cursive;">Mesa ${romanTableId}</h2>`,
-        html: `<div style="display: flex; flex-direction: column; align-items: center;">${optionsHtml}</div>`,
-        showConfirmButton: false,
-        showCancelButton: true,
-        cancelButtonText: '<span>Cancelar</span>',
-        customClass: {
-            popup: 'custom-swal-popup',
-            title: 'custom-swal-title',
-            content: 'custom-swal-content'
-        },
-        background: 'rgba(210, 180, 140, 0.8)',  // Fondo marrón claro menos transparente
-        backdrop: 'rgba(0, 0, 0, 0.5)'
-    });
-}
-
-
-// Cargar mesas libres en el modal
-function fetchFreeTables() {
-    fetch('fetch_free_tables.php') // Crear un archivo PHP que devuelva mesas libres
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById('groupTablesContainer');
-            container.innerHTML = data.tables.map(table =>
-                `<label style="margin: 5px;">
-                    <input type="checkbox" name="groupTableCheckbox" value="${table.table_id}">
-                    Mesa ${table.roman_number}
-                </label>`
-            ).join('');
-        })
-        .catch(error => console.error('Error fetching tables:', error));
-}
-
-// Enviar acción de agrupación
-function submitGroupAction(tableIds) {
-    fetch('group_tables_action.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tableIds: tableIds })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            tableIds.forEach(tableId => {
-                document.getElementById(`imgMesa${tableId}`).src = '../img/sombrillaRoja.webp';
-            });
-            Swal.fire('Éxito', 'Mesas agrupadas y marcadas como ocupadas.', 'success');
-        } else {
-            Swal.fire('Error', 'No se pudo agrupar las mesas.', 'error');
-        }
-    })
-    .catch(error => console.error('Error grouping tables:', error));
 }
 </script>
 </body>
