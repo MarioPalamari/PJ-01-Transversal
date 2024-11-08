@@ -153,3 +153,4 @@ $estadoVIP4 = obtenerEstadoVIPS($conexion, 9); // VIP 4
 
 </body>
 </html>
+
