@@ -33,6 +33,40 @@ body {
     border-radius: 12px;
     position: relative;
 }
+.container3 {
+    text-align: center;
+    background-image: url('./img/fondo.jpg'); /* Asegúrate de reemplazar 'ruta/a/tu/imagen/fondo.webp' con la ruta correcta de tu imagen */
+    background-size: 100%; /* Ajusta el tamaño de la imagen al 50% del contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position-y: 600px;
+    width: 88%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 40%;
+    padding-bottom: 7%;
+    border-radius: 12px;
+    position: relative;
+}
+.container4 {
+    text-align: center;
+    background-image: url('./img/fondo.jpg'); /* Asegúrate de reemplazar 'ruta/a/tu/imagen/fondo.webp' con la ruta correcta de tu imagen */
+    background-size: 100%; /* Ajusta el tamaño de la imagen al 50% del contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position-y: 30px;
+    width: 88%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 12px;
+    position: relative;
+}
+.button-container {
+    display: flex; /* Utiliza flexbox para alinear los botones */
+    gap: 10px; /* Espacio entre los botones */
+    justify-content: center; /* Centra los botones horizontalmente */
+    margin-top: 20px; /* Espacio superior opcional */
+}
 /* clase para el logo arriba a la derecha */
 .superpuesta {
     position: absolute; /* Permite que la imagen se superponga */
@@ -50,6 +84,14 @@ h1 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     font-family: 'Arial Black', sans-serif;
     margin-bottom: 30px;
+}
+.h1salon2 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 30px;
+    margin-top: 60px;
 }
 
 .room-sections {
@@ -96,7 +138,7 @@ button {
 }
 
 .logout-button {
-    margin-top: 30px;
+    margin-top: 15px;
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
@@ -140,6 +182,24 @@ h1 {
     text-align: center; /* Centrado del contenido dentro del recuadro */
 }
 
+.mesa-info-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los recuadros se ajusten a varias filas */
+    gap: 10px; /* Espacio entre los recuadros */
+    justify-content: center; /* Centra los recuadros en la pantalla */
+}
+
+.mesa-info2 {
+    width: 40%;
+    margin-bottom: 10px; /* Espacio en la parte inferior para separar las filas */
+    background-color: #8A5021; /* Mismo fondo para los recuadros */
+    padding: 10px;
+    border-radius: 8px; /* Bordes redondeados */
+    color: white;
+    text-align: center; /* Centra el contenido */
+}
+
+
 
 
 .table {
@@ -149,8 +209,16 @@ h1 {
     text-align: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     width: 90%; 
+    transition: transform 0.3s;
 }
-
+.tabla {
+    background-color: #a67c52; 
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 90%; 
+}
 .table img {
     width: 20%; 
     height: auto;
@@ -159,6 +227,12 @@ h1 {
 }
 
 .table p {
+    font-weight: bold;
+    color: #3b2c24; 
+    margin-top: 2%;
+}
+
+.table1 p {
     font-weight: bold;
     color: #3b2c24; 
     margin-top: 2%;
@@ -201,19 +275,37 @@ h1 {
         "mesa16 . mesa17 . mesa18"
         ". mesa19 . mesa20 ."; /* Coloca mesa4 y mesa5 en las posiciones deseadas */
 }
-.grid2{
+.grid5 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Tres columnas */
+    grid-template-rows: auto auto; /* Dos filas */
+    gap: 50px; /* Espacio entre mesas */
+    justify-items: center;
+    margin: 0 auto;
+    grid-template-areas: 
+        "mesa46 . mesa47"
+        ". mesa49 . mesa48 ."; /* Coloca mesa4 y mesa5 en las posiciones deseadas */
+}
+.grid2 {
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* Tres columnas */
     gap: 40px;
     justify-items: center;
     margin: 0 auto;
 }
-
-.table {
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    width: 100%;
+.grid4 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Tres columnas */
+    gap: 25px;
+    justify-items: center;
+    margin: 0 auto;
+}
+.grid6 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Tres columnas */
+    gap: 25px;
+    justify-items: center;
+    margin: 0 auto;
 }
 
 /* Asigna cada mesa a su área de la cuadrícula */
@@ -256,19 +348,100 @@ h1 {
     grid-area: mesa20;
 }
 
-/* Estilos de imagen y texto de las mesas */
-.table img {
-    width: 25%;
-    height: auto;
-    margin-bottom: 10px;
-    border-radius: 4px;
+
+.grid5 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+    gap: 70px;
+    justify-items: center;
+    margin: 0 auto;
+    grid-template-areas: 
+        "mesa46 . mesa47"
+        ". mesa49 . mesa48 .";
 }
 
-.table p {
-    font-weight: bold;
-    color: #3b2c24;
-    margin-top: 5px;
+
+
+
+/* Cuadrícula de mesas */
+.grid5 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    grid-gap: 20px; /* Separación entre recuadros */
+    justify-items: center;
+    width: 100%;
+    max-width: 600px; /* Ancho máximo para centrar la cuadrícula */
 }
+
+/* Recuadro de cada mesa */
+.table1 {
+    width: 200px; /* Ancho de cada recuadro */
+    height: 200px; /* Alto de cada recuadro */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9a875; 
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    cursor: pointer;
+    border-radius: 15px; 
+    overflow: hidden;
+}
+
+.table1:hover {
+    transform: scale(1.05); /* Efecto al pasar el mouse */
+}
+
+
+.table:hover {
+    transform: scale(1.05); /* Efecto al pasar el mouse */
+}
+
+/* Imagen dentro del recuadro de mesa */
+.table1 img {
+    width: 60px; /* Tamaño reducido de la imagen */
+    height: 60px;
+    margin-bottom: 5px;
+    border-radius: 20px;  
+}
+
+/* Estilos para las mesas individuales */
+.table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+.tabla {
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    border-radius: 10px;
+    border: 10px black;
+}
+
+.texto-historial {
+    color: white;
+}
+
 
 
 
@@ -304,6 +477,30 @@ h1 {
         align-items: center;
         border-radius: 12px;
     }
+
+    .container3 {
+        width: 90%;
+        padding: 3%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 12px;
+    }
+
+    .container4 {
+        text-align: center;
+        background-image: url('./img/fondo.jpg'); /* Asegúrate de reemplazar 'ruta/a/tu/imagen/fondo.webp' con la ruta correcta de tu imagen */
+        background-size: 200%; /* Ajusta el tamaño de la imagen al 50% del contenedor */
+        background-position: center; /* Centra la imagen */
+        background-repeat: no-repeat; /* Evita que la imagen se repita */
+        background-position-y: 30px;
+        width: 88%;
+        padding-left: 5%;
+        padding-right: 5%;
+        border-radius: 12px;
+        position: relative;
+    }
     
     /* Imagen del encabezado */
     .header img.imgTerraza1 {
@@ -335,11 +532,32 @@ h1 {
             "mesa1 mesa2 mesa3 mesa4 mesa5" /* Primera fila */
             "mesa6 mesa7 mesa8 mesa9 mesa10"; /* Segunda fila */
     }
+    .grid4 {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* Cinco columnas */
+        grid-template-rows: repeat(2, auto); /* Dos filas */
+        gap: 20px; /* Espacio entre mesas */
+        justify-items: center;
+        margin: 0 auto;
+        grid-template-areas: 
+            "mesa1 mesa2 mesa3 mesa4 mesa5" /* Primera fila */
+            "mesa6 mesa7 mesa8 mesa9 mesa10"; /* Segunda fila */
+    }
+    .grid6 {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* Cinco columnas */
+        grid-template-rows: repeat(2, auto); /* Dos filas */
+        gap: 2copx; /* Espacio entre mesas */
+        justify-items: center;
+        margin: 0 auto;
+        grid-template-areas: 
+            "mesa1 mesa2 mesa3 mesa4 mesa5" /* Primera fila */
+            "mesa6 mesa7 mesa8 mesa9 mesa10"; /* Segunda fila */
+    }
     .table img {
-        width: 50%; 
+        width: 100%; 
         height: auto;
         margin-bottom: 10px;
-        border-radius: 4px;
     }
     /* Mesas */
     .table {
@@ -363,5 +581,24 @@ h1 {
         width: 100%;
         max-width: 280px;
         margin: 8px 0;
+    }
+    .grid5 {
+        display: flex;
+        flex-wrap: nowrap; /* No se envuelven los elementos */
+        justify-content: space-between; /* Espaciado entre los elementos */
+    }
+    
+    .table1 {
+        width: 80px; /* Ajustar el tamaño de los recuadros */
+        height: 80px;
+    }
+    
+    .table1 img {
+        width: 50px; /* Reducir el tamaño de las imágenes */
+        height: 50px;
+    }
+
+    .table1 p {
+        font-size: 0.8em; /* Reducir el tamaño del texto */
     }
 }
