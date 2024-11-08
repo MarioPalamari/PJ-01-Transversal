@@ -40,10 +40,16 @@ $usuario = $_SESSION['usuario'];
 // Obtener ID del usuario basado en el nombre de usuario
 $sqlGetUserId = "SELECT user_id FROM tbl_users WHERE username = ?";
 $stmtGetUserId = $conexion->prepare($sqlGetUserId);
-$stmtGetUserId->bind_param("s", $usuario);
-$stmtGetUserId->execute();
-$result = $stmtGetUserId->get_result();
-$userId = ($result->num_rows > 0) ? $result->fetch_assoc()['user_id'] : null;
+if ($stmtGetUserId) {
+    $stmtGetUserId->bind_param("s", $usuario);
+    $stmtGetUserId->execute();
+    $result = $stmtGetUserId->get_result();
+    $userId = ($result->num_rows > 0) ? $result->fetch_assoc()['user_id'] : null;
+    $stmtGetUserId->close();
+} else {
+    echo "Error en la consulta SQL.";
+    exit;
+}
 
 // Actualizar la ocupación o desocupación de una mesa
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_POST['tableId'])) {
@@ -53,37 +59,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_P
     if ($action === 'occupy') {
         $sqlUpdateTable = "UPDATE tbl_tables SET status = 'occupied' WHERE table_id = ?";
         $stmtUpdateTable = $conexion->prepare($sqlUpdateTable);
-        $stmtUpdateTable->bind_param("i", $tableId);
-        $stmtUpdateTable->execute();
+        if ($stmtUpdateTable) {
+            $stmtUpdateTable->bind_param("i", $tableId);
+            $stmtUpdateTable->execute();
 
-        $sqlInsertOccupation = "INSERT INTO tbl_occupations (table_id, user_id, start_time) VALUES (?, ?, CURRENT_TIMESTAMP)";
-        $stmtInsertOccupation = $conexion->prepare($sqlInsertOccupation);
-        $stmtInsertOccupation->bind_param("ii", $tableId, $userId);
-        $stmtInsertOccupation->execute();
+            $sqlInsertOccupation = "INSERT INTO tbl_occupations (table_id, user_id, start_time) VALUES (?, ?, CURRENT_TIMESTAMP)";
+            $stmtInsertOccupation = $conexion->prepare($sqlInsertOccupation);
+            if ($stmtInsertOccupation) {
+                $stmtInsertOccupation->bind_param("ii", $tableId, $userId);
+                $stmtInsertOccupation->execute();
+                $stmtInsertOccupation->close();
+            }
+            $stmtUpdateTable->close();
+        }
     } elseif ($action === 'free') {
         $sqlUpdateTable = "UPDATE tbl_tables SET status = 'free' WHERE table_id = ?";
         $stmtUpdateTable = $conexion->prepare($sqlUpdateTable);
-        $stmtUpdateTable->bind_param("i", $tableId);
-        $stmtUpdateTable->execute();
+        if ($stmtUpdateTable) {
+            $stmtUpdateTable->bind_param("i", $tableId);
+            $stmtUpdateTable->execute();
 
-        $sqlEndOccupation = "UPDATE tbl_occupations SET end_time = CURRENT_TIMESTAMP WHERE table_id = ? AND end_time IS NULL";
-        $stmtEndOccupation = $conexion->prepare($sqlEndOccupation);
-        $stmtEndOccupation->bind_param("i", $tableId);
-        $stmtEndOccupation->execute();
+            $sqlEndOccupation = "UPDATE tbl_occupations SET end_time = CURRENT_TIMESTAMP WHERE table_id = ? AND end_time IS NULL";
+            $stmtEndOccupation = $conexion->prepare($sqlEndOccupation);
+            if ($stmtEndOccupation) {
+                $stmtEndOccupation->bind_param("i", $tableId);
+                $stmtEndOccupation->execute();
+                $stmtEndOccupation->close();
+            }
+            $stmtUpdateTable->close();
+        }
     }
     
     // Agrupación de mesas
     elseif ($action === 'group') {
         $sqlInsertGroup = "INSERT INTO tbl_table_groups (user_id) VALUES (?)";
         $stmtInsertGroup = $conexion->prepare($sqlInsertGroup);
-        $stmtInsertGroup->bind_param("i", $userId);
-        $stmtInsertGroup->execute();
-        $groupId = $stmtInsertGroup->insert_id;
+        if ($stmtInsertGroup) {
+            $stmtInsertGroup->bind_param("i", $userId);
+            $stmtInsertGroup->execute();
+            $groupId = $stmtInsertGroup->insert_id;
 
-        $sqlInsertGroupTable = "INSERT INTO tbl_group_tables (group_id, table_id) VALUES (?, ?)";
-        $stmtInsertGroupTable = $conexion->prepare($sqlInsertGroupTable);
-        $stmtInsertGroupTable->bind_param("ii", $groupId, $tableId);
-        $stmtInsertGroupTable->execute();
+            $sqlInsertGroupTable = "INSERT INTO tbl_group_tables (group_id, table_id) VALUES (?, ?)";
+            $stmtInsertGroupTable = $conexion->prepare($sqlInsertGroupTable);
+            if ($stmtInsertGroupTable) {
+                $stmtInsertGroupTable->bind_param("ii", $groupId, $tableId);
+                $stmtInsertGroupTable->execute();
+                $stmtInsertGroupTable->close();
+            }
+            $stmtInsertGroup->close();
+        }
     }
 
     // Movimiento de mesas
@@ -91,15 +115,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_P
         $newRoomId = $_POST['newRoomId'];
         $sqlMoveTable = "UPDATE tbl_tables SET current_room_id = ? WHERE table_id = ?";
         $stmtMoveTable = $conexion->prepare($sqlMoveTable);
-        $stmtMoveTable->bind_param("ii", $newRoomId, $tableId);
-        $stmtMoveTable->execute();
+        if ($stmtMoveTable) {
+            $stmtMoveTable->bind_param("ii", $newRoomId, $tableId);
+            $stmtMoveTable->execute();
+            $stmtMoveTable->close();
+        }
     }
 
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
 
-$sql = "SELECT table_id, status FROM tbl_tables WHERE table_id BETWEEN 6 AND 15";
+// Consultar el estado actual de cada mesa en la terraza 2
+$sql = "SELECT table_id, status FROM tbl_tables WHERE room_id = 2"; // Cambiar a room_id = 2
 $result = $conexion->query($sql);
 ?>
 
@@ -116,7 +144,7 @@ $result = $conexion->query($sql);
 <body>
     <div class="container2">
         <div class="header">
-            <h1>T e r r a z a    II</h1> <!-- Título actualizado -->
+            <h1>T e r r a z a II</h1>
         </div>
         <div class="grid2">
             <?php
@@ -128,7 +156,7 @@ $result = $conexion->query($sql);
                 $tableId = $row['table_id'];
                 $status = $row['status'];
                 $romanTableId = romanNumerals($tableId); // Convertimos a números romanos
-                $imgSrc = ($status === 'occupied') ? '../img/salonRoja.webp' : '../img/sombrilla.webp';
+                $imgSrc = ($status === 'occupied') ? '../img/sombrillaRoja.webp' : '../img/sombrilla.webp';
 
                 echo "
                 <div class='table' id='mesa$tableId' onclick='openTableOptions($tableId, \"$status\", \"$romanTableId\", $roomId)'>
@@ -153,7 +181,8 @@ $result = $conexion->query($sql);
         </form>
     </div>
 
-    <!-- Aquí incluimos el archivo JavaScript generalizado -->
     <script src="../validaciones/funcionesSalones.js"></script>
+    <script src="../validaciones/funciones.js"></script>
+
 </body>
 </html>

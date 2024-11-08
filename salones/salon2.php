@@ -114,11 +114,11 @@ $result = $conexion->query($sql);
     <link href="https://fonts.googleapis.com/css2?family=Sancreek&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container2">
+    <div class="container4">
         <div class="header">
-            <h1>S A L Ó N    II</h1> 
+            <h1 class="h1salon2">S A L Ó N II</h1> 
         </div>
-        <div class="grid2">
+        <div class="grid6">
             <?php
             // Generar HTML para cada mesa
             while ($row = $result->fetch_assoc()) {
@@ -143,11 +143,13 @@ $result = $conexion->query($sql);
             ?>
 
         </div>
-
-        <button class="logout-button" onclick="logout()">Cerrar Sesión</button>
-        <form action="../paginaPrincipal.php">
-            <button class="logout">Volver</button>
-        </form>
+        
+        <div class="button-container">
+            <button class="logout-button" onclick="logout()">Cerrar Sesión</button>
+            <form action="../paginaPrincipal.php">
+                <button class="logout">Volver</button>
+            </form>
+        </div>
     </div>
 
     <script src="../validaciones/funcionesSalones.js"></script>
