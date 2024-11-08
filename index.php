@@ -8,13 +8,11 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Sancreek&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
     <div class="container">
         <div>
             <form action="./procLogin/validacionLogin.php" method="POST" onsubmit="return validarFormulario()">
-                <!-- Titulo (primera linea para el sombreado, segunda linea es el titulo en si) -->
                 <div><p class="sombraindex">Iniciar SesionDD</p></div>
                 <div><p class="tituloindex">Iniciar Sesion</p></div>
                 <!-- Contenedor flex para los inputs -->
@@ -37,6 +35,9 @@
                 <?php
                 if (isset($_GET['error']) && $_GET['error'] == 1) {
                     echo "<p style='color: red'>Usuario o contraseña incorrectos</p>";
+                }
+                if (isset($_GET['error']) && $_GET['error'] == 2) {
+                    echo "<p style='color: red'>No eres un administrador</p>";
                 }
                 ?>
             </form>
