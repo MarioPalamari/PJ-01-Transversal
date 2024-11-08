@@ -1,5 +1,5 @@
 // Función para mostrar las opciones del modal
-function openTableOptions(tableId, status, romanTableId) {
+function openTableOptions(tableId, status, romanTableId, roomId) {
     const actions = [
         { label: status === 'free' ? 'Ocupar Mesa' : 'Desocupar Mesa', value: status === 'free' ? 'occupy' : 'free' },
         { label: 'Agrupar Mesas', value: 'group' },
@@ -7,7 +7,7 @@ function openTableOptions(tableId, status, romanTableId) {
     ];
 
     let optionsHtml = actions.map(action => 
-        `<button onclick="submitAction(${tableId}, '${action.value}')"
+        `<button onclick="submitAction(${tableId}, '${action.value}', ${roomId})"
                 style="padding: 10px 20px; margin: 5px; background-color: #8A5021; color: white; 
                 border: none; border-radius: 10px; cursor: pointer; width: 250px; text-align: center;">
             ${action.label}
@@ -31,18 +31,18 @@ function openTableOptions(tableId, status, romanTableId) {
 }
 
 // Función para manejar la acción seleccionada y enviar el formulario
-function submitAction(tableId, action) {
+function submitAction(tableId, action, roomId) {
     if (action === 'group') {
         // Obtener todas las mesas disponibles
-        fetch('../procMesas/getAvailableTables.php') // Crear este archivo para obtener las mesas libres
+        fetch(`../procMesas/getAvailableTables.php?room Id=${roomId}`) // Pasar el roomId como parámetro
             .then(response => response.json())
             .then(tables => {
-                const tableOptions = tables.map(table => `
-                    <div style="margin-bottom: 10px;">
+                const tableOptions = tables.map(table => 
+                    `<div style="margin-bottom: 10px;">
                         <input type="checkbox" id="table${table.table_id}" value="${table.table_id}">
                         <label for="table${table.table_id}">Mesa ${table.roman_table_id}</label>
-                    </div>
-                `).join('');
+                    </div>`
+                ).join('');
 
                 Swal.fire({
                     title: 'Selecciona las mesas que deseas agrupar',
