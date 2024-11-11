@@ -80,9 +80,9 @@ if ($usuariosResult->num_rows > 0) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <div class="container my-5">
-        <h1 class="text-center">Panel de Administración - Historial y Estado de Salas</h1>
 
+    <div class="containerHistorial">
+    <h1 class="text-center">Panel de Administración - Historial y Estado de Salas</h1>
         <!-- Filtros de Búsqueda -->
         <form method="POST" class="mb-4">
             <div class="row">
@@ -181,7 +181,7 @@ if ($usuariosResult->num_rows > 0) {
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Redirigir al script de eliminación pasando el ID de la mesa
-                    window.location.href = 'eliminar_ocupacion.php?id=' + tableId;
+                    window.location.href = 'eliminar_historial.php?id=' + tableId;
                 }
             });
         }
