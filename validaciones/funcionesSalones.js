@@ -1,10 +1,10 @@
-// Función para mostrar las opciones del modal
+// Función para mostrar las opciones de ocupar librar de cada mesa
 function openTableOptions(tableId, status, romanTableId, roomId) {
     const actions = [
         { label: status === 'free' ? 'Ocupar Mesa' : 'Desocupar Mesa', value: status === 'free' ? 'occupy' : 'free' },
-        { label: 'Agrupar Mesas', value: 'group' },
-        { label: 'Mover Mesa', value: 'move' }
+        { label: 'Agrupar Mesas', value: 'group' }
     ];
+
 
     let optionsHtml = actions.map(action => 
         `<button onclick="submitAction(${tableId}, '${action.value}', ${roomId})"
@@ -25,73 +25,21 @@ function openTableOptions(tableId, status, romanTableId, roomId) {
             title: 'custom-swal-title',
             content: 'custom-swal-content'
         },
-        background: 'rgba(210, 180, 140, 0.8)',  // Fondo marrón claro menos transparente
+        background: 'rgba(210, 180, 140, 0.8)',  
         backdrop: 'rgba(0, 0, 0, 0.5)'
     });
 }
 
-// Función para manejar la acción seleccionada y enviar el formulario
+// Función para enviar la acción seleccionada
 function submitAction(tableId, action, roomId) {
-    if (action === 'group') {
-        // Obtener todas las mesas disponibles
-        fetch(`../procMesas/getAvailableTables.php?room Id=${roomId}`) // Pasar el roomId como parámetro
-            .then(response => response.json())
-            .then(tables => {
-                const tableOptions = tables.map(table => 
-                    `<div style="margin-bottom: 10px;">
-                        <input type="checkbox" id="table${table.table_id}" value="${table.table_id}">
-                        <label for="table${table.table_id}">Mesa ${table.roman_table_id}</label>
-                    </div>`
-                ).join('');
+    // Establece el valor de la acción en el formulario oculto y envía el formulario
+    document.getElementById(`action${tableId}`).value = action;
 
-                Swal.fire({
-                    title: 'Selecciona las mesas que deseas agrupar',
-                    html: `<div style="max-height: 300px; overflow-y: auto;">${tableOptions}</div>`,
-                    showCancelButton: true,
-                    confirmButtonText: 'Agrupar Mesas',
-                    preConfirm: () => {
-                        const selectedTables = [];
-                        tables.forEach(table => {
-                            if (document.getElementById(`table${table.table_id}`).checked) {
-                                selectedTables.push(table.table_id);
-                            }
-                        });
-                        return selectedTables;
-                    }
-                }).then(result => {
-                    if (result.isConfirmed) {
-                        const selectedTables = result.value;
-                        if (selectedTables.length > 0) {
-                            groupTables(selectedTables);
-                        }
-                    }
-                });
-            });
-    } else {
-        // Si no es "Agrupar Mesas", se maneja el resto de las acciones
-        const form = document.getElementById(`formMesa${tableId}`);
-        document.getElementById(`action${tableId}`).value = action; // Asigna la acción seleccionada al campo hidden
-        form.submit();
+    // Si la acción es "mover", necesitamos un roomId adicional
+    if (action === 'move' && roomId) {
+        document.getElementById(`newRoomId${tableId}`).value = roomId;
     }
-}
-
-// Función para agrupar las mesas seleccionadas
-function groupTables(selectedTables) {
-    const formData = new FormData();
-    formData.append('action', 'group');
-    formData.append('tables', JSON.stringify(selectedTables)); // Pasamos un JSON con las mesas seleccionadas
-
-    fetch('../procMesas/groupTables.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            Swal.fire('Mesas agrupadas exitosamente');
-            location.reload(); // Recargar para mostrar los cambios
-        } else {
-            Swal.fire('Error', 'No se pudieron agrupar las mesas', 'error');
-        }
-    });
+    
+    // Enviar el formulario oculto correspondiente a la mesa seleccionada
+    document.getElementById(`formMesa${tableId}`).submit();
 }
