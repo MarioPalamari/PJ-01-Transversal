@@ -19,6 +19,21 @@ body {
     border-radius: 12px;
     position: relative;
 }
+.containerHistorial {
+    font-family: 'Sancreek';
+    text-align: center;
+    background-color: #8A5021;
+    width: 88%;
+    height: 100vh;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 3%;
+    padding-bottom: 7%;
+    border-radius: 12px;
+    position: relative;
+    overflow-y: auto;
+}
+
 .container2 {
     text-align: center;
     background-image: url('./img/fondo.jpg'); /* Asegúrate de reemplazar 'ruta/a/tu/imagen/fondo.webp' con la ruta correcta de tu imagen */

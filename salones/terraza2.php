@@ -88,34 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_P
             }
             $stmtUpdateTable->close();
         }
-    } elseif ($action === 'group') {
-        // Agrupar mesas
-        $sqlInsertGroup = "INSERT INTO tbl_table_groups (user_id) VALUES (?)";
-        $stmtInsertGroup = $conexion->prepare($sqlInsertGroup);
-        if ($stmtInsertGroup) {
-            $stmtInsertGroup->bind_param("i", $userId);
-            $stmtInsertGroup->execute();
-            $groupId = $stmtInsertGroup->insert_id;
-
-            $sqlInsertGroupTable = "INSERT INTO tbl_group_tables (group_id, table_id) VALUES (?, ?)";
-            $stmtInsertGroupTable = $conexion->prepare($sqlInsertGroupTable);
-            if ($stmtInsertGroupTable) {
-                $stmtInsertGroupTable->bind_param("ii", $groupId, $tableId);
-                $stmtInsertGroupTable->execute();
-                $stmtInsertGroupTable->close();
-            }
-            $stmtInsertGroup->close();
-        }
-    } elseif ($action === 'move' && isset($_POST['newRoomId'])) {
-        $newRoomId = $_POST['newRoomId'];
-        $sqlMoveTable = "UPDATE tbl_tables SET current_room_id = ? WHERE table_id = ?";
-        $stmtMoveTable = $conexion->prepare($sqlMoveTable);
-        if ($stmtMoveTable) {
-            $stmtMoveTable->bind_param("ii", $newRoomId, $tableId);
-            $stmtMoveTable->execute();
-            $stmtMoveTable->close();
-        }
-    }
+    } 
 
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();

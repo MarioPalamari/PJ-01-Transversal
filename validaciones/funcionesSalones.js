@@ -2,7 +2,6 @@
 function openTableOptions(tableId, status, romanTableId, roomId) {
     const actions = [
         { label: status === 'free' ? 'Ocupar Mesa' : 'Desocupar Mesa', value: status === 'free' ? 'occupy' : 'free' },
-        { label: 'Agrupar Mesas', value: 'group' }
     ];
 
 
@@ -35,11 +34,9 @@ function submitAction(tableId, action, roomId) {
     // Establece el valor de la acción en el formulario oculto y envía el formulario
     document.getElementById(`action${tableId}`).value = action;
 
-    // Si la acción es "mover", necesitamos un roomId adicional
     if (action === 'move' && roomId) {
         document.getElementById(`newRoomId${tableId}`).value = roomId;
     }
     
-    // Enviar el formulario oculto correspondiente a la mesa seleccionada
     document.getElementById(`formMesa${tableId}`).submit();
 }
