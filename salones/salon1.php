@@ -31,9 +31,10 @@ function romanNumerals($number) {
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
-    echo "<h6>Por favor, inicie sesión.</h6>";
+    header('Location: ../index.php?error=1') ;   
     exit;
 }
+
 
 $usuario = $_SESSION['usuario'];
 

@@ -88,10 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_P
             }
             $stmtUpdateTable->close();
         }
-    }
-    
-    // Agrupación de mesas
-    elseif ($action === 'group') {
+    } elseif ($action === 'group') {
+        // Agrupar mesas
         $sqlInsertGroup = "INSERT INTO tbl_table_groups (user_id) VALUES (?)";
         $stmtInsertGroup = $conexion->prepare($sqlInsertGroup);
         if ($stmtInsertGroup) {
@@ -108,10 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_P
             }
             $stmtInsertGroup->close();
         }
-    }
-
-    // Movimiento de mesas
-    elseif ($action === 'move' && isset($_POST['newRoomId'])) {
+    } elseif ($action === 'move' && isset($_POST['newRoomId'])) {
         $newRoomId = $_POST['newRoomId'];
         $sqlMoveTable = "UPDATE tbl_tables SET current_room_id = ? WHERE table_id = ?";
         $stmtMoveTable = $conexion->prepare($sqlMoveTable);
@@ -127,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_P
 }
 
 // Consultar el estado actual de cada mesa en la terraza 2
-$sql = "SELECT table_id, status FROM tbl_tables WHERE room_id = 2"; // Cambiar a room_id = 2
+$sql = "SELECT table_id, status FROM tbl_tables WHERE room_id = 2"; 
 $result = $conexion->query($sql);
 ?>
 
@@ -142,20 +137,19 @@ $result = $conexion->query($sql);
     <link href="https://fonts.googleapis.com/css2?family=Sancreek&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div><img src="./../img/logo.webp" alt="Logo de la página" class="superpuesta"><br></div>
     <div class="container2">
         <div class="header">
             <h1>T e r r a z a II</h1>
         </div>
         <div class="grid2">
             <?php
-            // ID de la terraza actual
-            $roomId = 2;  // Asumimos que terraza2 tiene el ID 2 en la base de datos
+            $roomId = 2; 
 
-            // Generar HTML para cada mesa
             while ($row = $result->fetch_assoc()) {
                 $tableId = $row['table_id'];
                 $status = $row['status'];
-                $romanTableId = romanNumerals($tableId); // Convertimos a números romanos
+                $romanTableId = romanNumerals($tableId);
                 $imgSrc = ($status === 'occupied') ? '../img/sombrillaRoja.webp' : '../img/sombrilla.webp';
 
                 echo "
@@ -172,7 +166,6 @@ $result = $conexion->query($sql);
                 ";
             }
             ?>
-
         </div>
 
         <button class="logout-button" onclick="logout()">Cerrar Sesión</button>
@@ -183,6 +176,9 @@ $result = $conexion->query($sql);
 
     <script src="../validaciones/funcionesSalones.js"></script>
     <script src="../validaciones/funciones.js"></script>
+    <script>
+    const roomId = 2;
+    </script>
 
 </body>
 </html>

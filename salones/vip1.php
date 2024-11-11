@@ -31,7 +31,7 @@ function romanNumerals($number) {
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
-    echo "<h6>Por favor, inicie sesión.</h6>";
+    header('Location: ../index.php?error=1') ;   
     exit;
 }
 
@@ -109,7 +109,7 @@ $result = $conexion->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terraza III</title> <!-- Aquí cambiamos el título a Terraza III -->
+    <title>Vip I</title> <!-- Aquí cambiamos el título a Terraza III -->
     <link rel="stylesheet" href="../styles.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://fonts.googleapis.com/css2?family=Sancreek&display=swap" rel="stylesheet">
