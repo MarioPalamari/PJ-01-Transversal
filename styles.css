@@ -374,6 +374,15 @@ h1 {
     max-width: 600px; /* Ancho máximo para centrar la cuadrícula */
 }
 
+.grid8 {
+    display: grid;
+    justify-items: center; /* Centra los elementos en el eje horizontal */
+    align-items: center; /* Centra los elementos en el eje vertical */
+    max-width: 600px; /* Limita el tamaño máximo de la cuadrícula */
+    margin: 0 auto; /* Centra la cuadrícula en el contenedor */
+    width: 100%;
+}
+
 /* Recuadro de cada mesa */
 .table1 {
     width: 200px; /* Ancho de cada recuadro */
@@ -442,7 +451,17 @@ h1 {
     color: white;
 }
 
-
+.grid7 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Cinco columnas */
+    grid-template-rows: repeat(2, auto); /* Dos filas */
+    gap: 20px; /* Espacio entre mesas */
+    justify-items: center;
+    margin: 0 auto;
+    grid-template-areas: 
+        "mesa53 mesa54 mesa55 mesa56"
+        "mesa57 mesa58 mesa59 mesa60"; /* Segunda fila */
+}
 
 
 @media (max-width: 700px) {
@@ -453,6 +472,15 @@ h1 {
         padding-right: 5%;
         padding-top: 40%;
         padding-bottom: 7%;
+    }
+
+    .superpuesta {
+        position: absolute; /* Permite que la imagen se superponga */
+        top: 0; /* Ajusta la distancia desde la parte superior */
+        right: 0; /* Ajusta la distancia desde la derecha */
+        width: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
+        height: auto; /* Mantiene la proporción de la imagen */
+        z-index: 10; /* Asegura que la imagen esté por encima del contenedor */
     }
 
     /* Coloca las secciones de salas en una columna */
@@ -469,7 +497,7 @@ h1 {
     }
     /* Contenedor principal */
     .container2 {
-        width: 90%;
+        width: 100%;
         padding: 3%;
         box-sizing: border-box;
         display: flex;
@@ -490,7 +518,7 @@ h1 {
 
     .container4 {
         text-align: center;
-        background-image: url('./img/fondo.jpg'); /* Asegúrate de reemplazar 'ruta/a/tu/imagen/fondo.webp' con la ruta correcta de tu imagen */
+        background-image: url('./img/fondo2.jpg'); /* Asegúrate de reemplazar 'ruta/a/tu/imagen/fondo.webp' con la ruta correcta de tu imagen */
         background-size: 200%; /* Ajusta el tamaño de la imagen al 50% del contenedor */
         background-position: center; /* Centra la imagen */
         background-repeat: no-repeat; /* Evita que la imagen se repita */
@@ -525,13 +553,14 @@ h1 {
         display: grid;
         grid-template-columns: repeat(5, 1fr); /* Cinco columnas */
         grid-template-rows: repeat(2, auto); /* Dos filas */
-        gap: 20px; /* Espacio entre mesas */
+        gap: 10px; /* Espacio entre mesas */
         justify-items: center;
         margin: 0 auto;
         grid-template-areas: 
             "mesa1 mesa2 mesa3 mesa4 mesa5" /* Primera fila */
             "mesa6 mesa7 mesa8 mesa9 mesa10"; /* Segunda fila */
     }
+
     .grid4 {
         display: grid;
         grid-template-columns: repeat(5, 1fr); /* Cinco columnas */
@@ -555,13 +584,13 @@ h1 {
             "mesa6 mesa7 mesa8 mesa9 mesa10"; /* Segunda fila */
     }
     .table img {
-        width: 100%; 
+        width: 110%; 
         height: auto;
         margin-bottom: 10px;
     }
     /* Mesas */
     .table {
-        width: 60%;
+        width: 80%;
         max-width: 500px;
         padding: 10px;
         margin: 5px 0; 
