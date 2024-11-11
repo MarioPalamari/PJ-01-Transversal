@@ -3,8 +3,8 @@ session_start();
 include('./conexion/conexion.php');
 
 if (!isset($_SESSION['usuario'])) {
-    echo "<h6>Por favor, inicie sesión.</h6>";
-    exit;
+    header('Location: ./index.php?error=1') ;   
+exit();
 }
 
 // Funciones para obtener el número de mesas libres y ocupadas en cada terraza
